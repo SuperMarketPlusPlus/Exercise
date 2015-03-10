@@ -20,11 +20,19 @@ public class SuperMarketPlusPlus {
         items.add(new Item("Sulfuras", 0, 80));
         items.add(new Item("Backstage Passes", 15, 20));
         items.add(new Item("Ginger Cake", 3, 6));
-
+        items.add(new Item("Organic Bananas", 20, 40));//New Product
+        //We execute updateQuality 5 times to test all results
         updateQuality();
-}
+        updateQuality();
+        updateQuality();
+        updateQuality();
+        updateQuality();
+	}
 
-
+	//Just to test in JUnit class
+	public static List<Item> getListItems(){
+		return items;
+	}
 	
     public static void updateQuality()
     {
