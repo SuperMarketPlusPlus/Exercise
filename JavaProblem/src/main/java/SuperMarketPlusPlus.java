@@ -28,8 +28,67 @@ public class SuperMarketPlusPlus {
 	
     public static void updateQuality()
     {
+    	//------------------------New Version-------------------------------------
         for (int i = 0; i < items.size(); i++)
         {
+        	//"Aged Brie"
+        	if (items.get(i).getName().equals("Aged Brie")){
+        		 if (items.get(i).getQuality() < 50)
+                 {
+                    items.get(i).setQuality(items.get(i).getQuality() + 1);
+                 }
+        		 
+                 items.get(i).setSellIn(items.get(i).getSellIn() - 1);
+                 
+        		 if ((items.get(i).getSellIn() < 0) && (items.get(i).getQuality() < 50))
+                 {
+        			 items.get(i).setQuality(items.get(i).getQuality() + 1);//Twice
+                 }
+        	}
+        	//"Backstage Passes"
+        	if (items.get(i).getName().equals("Backstage Passes")){
+        		if (items.get(i).getQuality() < 50)
+                {
+                    items.get(i).setQuality(items.get(i).getQuality() + 1);
+                    
+                    if (items.get(i).getSellIn() < 11)//Condition 1
+                    {
+                       items.get(i).setQuality(items.get(i).getQuality() + 1);
+                    }
+                    if (items.get(i).getSellIn() < 6)//Condition 2
+                    {
+                        items.get(i).setQuality(items.get(i).getQuality() + 1);
+                    }
+                    
+                    items.get(i).setSellIn(items.get(i).getSellIn() - 1);
+                    
+                    if (items.get(i).getSellIn() < 0)
+                    {
+                    	items.get(i).setQuality(items.get(i).getQuality() - items.get(i).getQuality());//Twice
+                    }
+                }
+        	}
+        	//Rest of cases
+        	if (items.get(i).getName().equals("Thermal Vest")||items.get(i).getName().equals("Chicken")||items.get(i).getName().equals("Ginger Cake")||(items.get(i).getName().equals("Organic Bananas"))){
+        		if (items.get(i).getQuality() > 0){
+        			items.get(i).setQuality(items.get(i).getQuality() - 1);
+                }
+        		
+        		if ((items.get(i).getQuality() > 0) && items.get(i).getName().equals("Organic Bananas")){
+        			items.get(i).setQuality(items.get(i).getQuality() - 1);//In case of Organic Bananas, it's double
+        		}
+        		
+        		items.get(i).setSellIn(items.get(i).getSellIn() - 1);
+        		
+        		if ((items.get(i).getSellIn() < 0)&&(items.get(i).getQuality() > 0)){
+        			items.get(i).setQuality(items.get(i).getQuality() - 1);//Twice
+        			if ((items.get(i).getQuality() > 0) && items.get(i).getName().equals("Organic Bananas")){
+            			items.get(i).setQuality(items.get(i).getQuality() - 1);//Twice(in this case 4)
+            		}
+        		}
+        	}
+        	
+        	/*-------------------------------Old Version-----------------------------------------------------------
             if ((!"Aged Brie".equals(items.get(i).getName())) && !"Backstage Passes".equals(items.get(i).getName())) 
             {
                 if (items.get(i).getQuality() > 0)
@@ -99,6 +158,7 @@ public class SuperMarketPlusPlus {
                     }
                 }
             }
+            */
         }
     }
 
